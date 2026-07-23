@@ -2,10 +2,10 @@ const CACHE_NAME = "fault-log-cache-v1";
 const APP_SHELL = [
   "./index.html",
   "./manifest.json",
-  "./icons/icon-192.png",
-  "./icons/icon-512.png",
-  "./icons/icon-512-maskable.png",
-  "./icons/apple-touch-icon.png",
+  "./icon-192.png",
+  "./icon-512.png",
+  "./icon-512-maskable.png",
+  "./apple-touch-icon.png",
 ];
 
 self.addEventListener("install", (event) => {
@@ -26,9 +26,6 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// Cache-first for the app shell, network-first fallback for everything else
-// (keeps the CDN-loaded SheetJS library fresh when online, but still usable
-// from cache if the device is offline after the first successful load).
 self.addEventListener("fetch", (event) => {
   const req = event.request;
   if (req.method !== "GET") return;
